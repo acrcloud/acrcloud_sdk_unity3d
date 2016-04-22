@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿/*
+ 
+   @author qinxue.pan E-mail: xue@acrcloud.com
+   @version 1.0.0
+   @create 2016.04.20
+   
+   @copyright ACRCloud 2016
+   
+*/
+
+using UnityEngine;
 using System.Collections;
 
 using System;  
