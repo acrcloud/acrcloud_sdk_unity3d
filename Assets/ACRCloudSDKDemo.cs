@@ -56,7 +56,14 @@ public class ACRCloudSDKDemo : MonoBehaviour, IACRCloudWorkerListener {
 				if (!this.mRecorder.StartRecord ()) {
 					this.mRecResult = "start Microphone record error";
 				}
-				this.mWorker = new ACRCloudWorker (this, this.mRecorder);
+
+				var recognizerConfig = new Dictionary<string, object>();
+				// Replace "XXXXXXXX" below with your project's host, access_key and access_secret
+				recognizerConfig.Add("host", "XXXXXXXX");
+				recognizerConfig.Add("access_key", "XXXXXXXX");
+				recognizerConfig.Add("access_secret", "XXXXXXXX");
+
+				this.mWorker = new ACRCloudWorker (this, this.mRecorder, recognizerConfig);
 				this.mWorker.Start ();
 				this.mIsProcessing = true;
 			}

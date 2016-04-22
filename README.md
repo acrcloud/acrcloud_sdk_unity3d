@@ -40,30 +40,127 @@ public class ACRCloudFingerprintTool {
     public static byte[] CreateFingerprint(byte[] pcmBuffer, int pcmBufferLen);
 }
 ```
-
-# Example
-You must replace "XXXXXXXX" below with your project's host, access_key and access_secret in ACRCloudWorker.cs, 
-and add ACRCloudSDKDemo as a component to Main Camera, test the package.
+## ACRCloudRecorder.cs
 ```c
+public class ACRCloudRecorder {
+    public static ACRCloudRecorder getInstance();
+
     /**
       *
-      *  Recognize ACRCloud Server by audio buffer.
-      *  You must replace "XXXXXXXX" below with your project's host, access_key and access_secret
+      *  start microphone and record
       * 
       **/
-	private string DoRecognize(byte[] pcmb) 
-	{
-		byte[] pcmBuffer = (byte[])pcmb;
-		int pcmBufferLen = pcmBuffer.Length;
-		var config = new Dictionary<string, object>();
+    public bool StartRecord();
 
-		// Replace "XXXXXXXX" below with your project's host, access_key and access_secret
-		config.Add("host", "XXXXXXXX");
-		config.Add("access_key", "XXXXXXXX");
-		config.Add("access_secret", "XXXXXXXX");
-		ACRCloudRecognizer re = new ACRCloudRecognizer(config);
+    /**
+      *
+      *  stop microphone
+      * 
+      **/
+    public void StopRecord();
+    
+    /**
+      *
+      *  If Microphone is ok, return current volume.
+      *  
+      *  @return int volume
+      *
+      **/
+    public float getVolume();
 
-		string res = re.Recognize (pcmBuffer, pcmBufferLen);
-		return res;
+    /**
+      *
+      *  init acrcloud microphone by global GameObject
+      *
+      *  @param GameObject gObj : global GameObject gameObject
+      *  
+      *  @return bool
+      *
+      **/
+    public bool init(GameObject gObj);
+
+    /**
+      *
+      *  get the length of current audio
+      *
+      *  @return int
+      *
+      **/
+    public int GetAudioDataLen();
+
+    /**
+      *
+      *  get current audio data
+      * 
+      *  @return byte[], if microphone is not ok, return null.
+      *
+      **/
+    public byte[] GetAudioData();
+
+    /**
+      *
+      *  You must call this function in a component,
+      *     1. every (this.mVolumeInterval) seconds calculate current volume.
+      *     2. get float[] buffer from microphone clip to this.mAudioBuffer and tranform Float[] to Short[].
+      * 
+      **/
+    public void Update();
+}
+```
+
+## ACRCloudRecorder.cs
+```c
+	public interface IACRCloudWorkerListener {
+	    /**
+              *
+              *  callback function of ACRCloudWorker, you can implement in a component script.
+              *
+              **/
+		void OnResult(string result);
 	}
+
+	public class ACRCloudWorker {
+	    public ACRCloudWorker(IACRCloudWorkerListener lins, ACRCloudRecorder recorder, IDictionary<string, object> config) {
+	    	this.mListener = lins;
+	    	this.mRecorder = recorder;
+	    	this.mRecognizer = new ACRCloudRecognizer(config);
+	    }
+	}
+
+   	/**
+          *
+          *  Cancel this recognition Session.
+          * 
+          *  Note:  ACRCloudWorker do not callback OnResult.
+          * 
+          **/
+	public void Cancel();
+
+    	/**
+          *
+          *  Make ACRCloudWorker know Recorder is stopped.
+          * 
+          *  Note: If you do not click this button(Stop Record and recognize), 
+          *        ACRCloudWorker can callback OnResult when it has result.
+          * 
+          **/
+	public void StopRecordToRecognize();
+
+	/**
+          *
+          *  Start a Thread to recognize.
+          * 
+          **/
+	public void Start();
+```
+
+# Example
+You must replace "XXXXXXXX" below with your project's host, access_key and access_secret in ACRCloudSDKDemo.cs, 
+and add ACRCloudSDKDemo.cs as a component to Main Camera, test the package.
+```c
+   var recognizerConfig = new Dictionary<string, object>();
+   // Replace "XXXXXXXX" below with your project's host, access_key and access_secret
+   recognizerConfig.Add("host", "XXXXXXXX");
+   recognizerConfig.Add("access_key", "XXXXXXXX");
+   recognizerConfig.Add("access_secret", "XXXXXXXX"); 
 ```

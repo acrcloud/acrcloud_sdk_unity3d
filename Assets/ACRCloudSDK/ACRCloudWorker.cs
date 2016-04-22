@@ -25,6 +25,7 @@ namespace ACRCloud {
 		
 		private IACRCloudWorkerListener mListener = null;
 		private ACRCloudRecorder mRecorder = null;
+		private ACRCloudRecognizer mRecognizer = null;
 
 		private int mRecognizeInterval = 3; // seconds
 		private int mMaxRecognizeAudioTime = 12;
@@ -33,9 +34,10 @@ namespace ACRCloud {
 		private bool mIsRunning = false;
 		private bool mIsStopRecord = false;
 
-		public ACRCloudWorker(IACRCloudWorkerListener lins, ACRCloudRecorder recorder) {
+		public ACRCloudWorker(IACRCloudWorkerListener lins, ACRCloudRecorder recorder, IDictionary<string, object> config) {
 			this.mListener = lins;
 			this.mRecorder = recorder;
+			this.mRecognizer = new ACRCloudRecognizer(config);
 		}
 
 		/**
@@ -170,23 +172,13 @@ namespace ACRCloud {
 		/**
           *
           *  Recognize ACRCloud Server by audio buffer.
-          *  You must replace "XXXXXXXX" below with your project's host, access_key and access_secret
           * 
           **/
-		private string DoRecognize(byte[] pcmb) 
+		private string DoRecognize(byte[] pcmBuffer) 
 		{
-			byte[] pcmBuffer = (byte[])pcmb;
 			int pcmBufferLen = pcmBuffer.Length;
-			var config = new Dictionary<string, object>();
 
-			// Replace "XXXXXXXX" below with your project's host, access_key and access_secret
-			config.Add("host", "XXXXXXXX");
-			config.Add("access_key", "XXXXXXXX");
-			config.Add("access_secret", "XXXXXXXX");
-			ACRCloudRecognizer re = new ACRCloudRecognizer(config);
-
-			string res = re.Recognize (pcmBuffer, pcmBufferLen);
-			return res;
+			return this.mRecognizer.Recognize (pcmBuffer, pcmBufferLen);
 		}
 	}
 
