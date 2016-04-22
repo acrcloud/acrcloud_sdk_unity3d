@@ -1,9 +1,4 @@
-﻿using System;
-using System.IO;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
-/*
+﻿/*
  
    @author qinxue.pan E-mail: xue@acrcloud.com
    @version 1.0.0
@@ -13,6 +8,11 @@ using System.Linq;
    
 */
 
+using System;
+using System.IO;
+using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
