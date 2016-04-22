@@ -2,7 +2,7 @@
   [ACRCloud](https://www.acrcloud.com/) provides cloud ACR services to help excellent companies and developers build Audio Fingerprinting based applications such as **Audio Recognition** (supports music, video, ads for both online and offline), **Broadcast Monitoring**, **Second Screen Interaction**, **Copyright Detection** and etc.<br>
 
 # ACRCloud
-Docs: [https://docs.acrcloud.com/](https://docs.acrcloud.com/)<br>
+Docs: [https://www.acrcloud.com/docs/](https://www.acrcloud.com/docs/)<br>
 Console: [https://console.acrcloud.com/](https://console.acrcloud.com/)
 
 # Functions
