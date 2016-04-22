@@ -10,9 +10,6 @@ Console: [https://console.acrcloud.com/](https://console.acrcloud.com/)
 
 # Functions
 Introduction all API.
-## recognizer.py
-# Functions
-Introduction all API.
 ## ACRCloudRecognizer.cs
 ```c
 public class ACRCloudRecognizer {
@@ -45,7 +42,8 @@ public class ACRCloudFingerprintTool {
 ```
 
 # Example
-You must replace "XXXXXXXX" below with your project's host, access_key and access_secret, and add ACRCloudSDKDemo as a component to Main Camera, test the package.
+You must replace "XXXXXXXX" below with your project's host, access_key and access_secret in ACRCloudWorker.cs, 
+and add ACRCloudSDKDemo as a component to Main Camera, test the package.
 ```c
     /**
       *
