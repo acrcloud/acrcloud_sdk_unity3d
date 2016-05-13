@@ -1,13 +1,20 @@
-# Overview
-  [ACRCloud](https://www.acrcloud.com/) provides cloud ACR services to help excellent companies and developers build Audio Fingerprinting based applications such as **Audio Recognition** (supports music, video, ads for both online and offline), **Broadcast Monitoring**, **Second Screen Interaction**, **Copyright Detection** and etc.<br>
+# Audio Recognition Uniti3D SDK
 
-# ACRCloud
-Docs: [https://www.acrcloud.com/docs/](https://www.acrcloud.com/docs/)<br>
-Console: [https://console.acrcloud.com/](https://console.acrcloud.com/)
+## Overview
+  [ACRCloud](https://www.acrcloud.com/) provides cloud [Automatic Content Recognition](https://www.acrcloud.com/docs/introduction/automatic-content-recognition/) services for [Audio Fingerprinting](https://www.acrcloud.com/docs/introduction/audio-fingerprinting/) based applications such as **[Audio Recognition](https://www.acrcloud.com/music-recognition)** (supports music, video, ads for both online and offline), **[Broadcast Monitoring](https://www.acrcloud.com/broadcast-monitoring)**, **[Second Screen](https://www.acrcloud.com/second-screen-synchronization)**, **[Copyright Protection](https://www.acrcloud.com/copyright-protection-de-duplication)** and etc.<br>
+  
+  This **audio recognition Unity3D SDK** enable apps recognize audio by recording sound through microphone. 
 
-# Functions
+## Requirements
+Follow one of the tutorials to create a project and get your host, access_key and access_secret.
+
+ * [How to identify songs by sound](https://www.acrcloud.com/docs/tutorials/identify-music-by-sound/)
+ 
+ * [How to detect custom audio content by sound](https://www.acrcloud.com/docs/tutorials/identify-audio-custom-content/)
+
+## Functions
 Introduction all API.
-## ACRCloudRecognizer.cs
+### ACRCloudRecognizer.cs
 ```c
 public class ACRCloudRecognizer {
     /**
@@ -37,7 +44,7 @@ public class ACRCloudFingerprintTool {
     public static byte[] CreateFingerprint(byte[] pcmBuffer, int pcmBufferLen);
 }
 ```
-## ACRCloudRecorder.cs
+### ACRCloudRecorder.cs
 ```c
 public class ACRCloudRecorder {
     public static ACRCloudRecorder getInstance();
@@ -105,7 +112,7 @@ public class ACRCloudRecorder {
 }
 ```
 
-## ACRCloudWorker.cs
+### ACRCloudWorker.cs
 ```c
 	public interface IACRCloudWorkerListener {
 	    /**
@@ -151,7 +158,7 @@ public class ACRCloudRecorder {
 	public void Start();
 ```
 
-# Example
+## Example
 You must replace "XXXXXXXX" below with your project's host, access_key and access_secret in ACRCloudSDKDemo.cs, 
 and add ACRCloudSDKDemo.cs as a component to Main Camera, test the package.
 ```c
