@@ -12,6 +12,19 @@ Follow one of the tutorials to create a project and get your host, access_key an
  
  * [How to detect custom audio content by sound](https://www.acrcloud.com/docs/tutorials/identify-audio-custom-content/)
 
+
+## Others
+**Recognizer**: It is the code implementation of ACRCloud WebApi and create fingerprint functions，https://docs.acrcloud.com/docs/acrcloud/audio-fingerprinting-api/audio-identification-api/protocol-1/
+**Recorder**: Used to record audio from a microphone.
+**Worker**: is a thread, used to asynchronously obtain recordings for identification. Default, one session can send up to 4 WebApi HTTP requests at 3s, 6s, 9s, and 12s respectively, the time interval is 3s(RecognizeInterval).
+Once the correct results are available at these time points, the SDK will stop recognizing and return the results.
+**Some Parameters**:
+mMaxRecordTime: Maximum recording time.
+mRecordSample: The format of the recorded audio, the sampling rate is 8000Hz
+RecognizeInterval: One session can send up to 4 WebApi HTTP requests at 3s, 6s, 9s, and 12s respectively, the time interval is 3s(RecognizeInterval).
+mMaxRecognizeAudioTime: The maximum audio supported by webapi is 12s
+mHttpErrorRetryNum: The HTTP request fails due to network and other reasons, and will be retried 3 times (mHttpErrorRetryNum).
+
 ## Functions
 Introduction all API.
 ### ACRCloudRecognizer.cs
